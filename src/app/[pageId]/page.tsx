@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { config, getPage, getPageTitle } from '@/lib/notion'
+import { siteContent } from '@/lib/siteContent'
 import NotionPageRenderer from '@/components/NotionPageRenderer'
 import type { Metadata } from 'next'
 
@@ -52,11 +53,14 @@ export default async function NotionSubPage({ params }: PageProps) {
 
   try {
     const recordMap = await getPage(pageId)
+    const isHome = pageId === siteContent.homePageId ||
+      pageId.replace(/-/g, '') === siteContent.homePageId.replace(/-/g, '')
 
     return (
       <NotionPageRenderer
         recordMap={recordMap}
         rootPageId={config.rootNotionPageId}
+        isHomePage={isHome}
       />
     )
   } catch (error) {

@@ -1,5 +1,6 @@
 import { NotionAPI } from 'notion-client'
 import { ExtendedRecordMap } from 'notion-types'
+import { hiddenBlockIds } from '@/lib/languageConfig'
 
 // Site configuration
 export const config = {
@@ -68,6 +69,40 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
   }
 
   return recordMap
+}
+
+/**
+ * Strip intro / contact / footer blocks from the home page recordMap.
+ * These blocks are rendered by custom React components instead.
+ * Should be called server-side before passing to the client.
+ */
+export function stripHomeBlocks(recordMap: ExtendedRecordMap, rootPageId: string): ExtendedRecordMap {
+  const hiddenSet = new Set(hiddenBlockIds)
+  const newBlock = { ...recordMap.block }
+
+  // Try both undashed and dashed forms of the root page ID
+  const clean = rootPageId.replace(/-/g, '')
+  const dashed = clean.length === 32
+    ? `${clean.slice(0,8)}-${clean.slice(8,12)}-${clean.slice(12,16)}-${clean.slice(16,20)}-${clean.slice(20)}`
+    : rootPageId
+
+  for (const key of [rootPageId, dashed, clean]) {
+    const entry = newBlock[key]
+    if (entry?.value?.content) {
+      newBlock[key] = {
+        ...entry,
+        value: {
+          ...entry.value,
+          content: (entry.value as any).content.filter(
+            (id: string) => !hiddenSet.has(id)
+          ),
+        },
+      } as any
+      break
+    }
+  }
+
+  return { ...recordMap, block: newBlock }
 }
 
 /**

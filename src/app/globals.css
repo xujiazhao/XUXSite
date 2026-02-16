@@ -76,6 +76,15 @@ body {
   display: none;
 }
 
+.notion-collection-card {
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.notion-collection-card-cover img {
+  border-radius: 8px 8px 0 0 !important;
+}
+
 /* Better callout styling */
 .notion-callout {
   @apply rounded-xl border-none;
@@ -135,4 +144,182 @@ body {
 
 .loading-spinner {
   @apply w-8 h-8 border-2 border-gray-200 border-t-gray-600 rounded-full animate-spin;
+}
+
+/* ========================================
+   Language Toggle
+   ======================================== */
+
+.language-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+  display: flex;
+  gap: 0;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.lang-btn {
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  color: #999;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.lang-btn:hover {
+  color: #555;
+}
+
+.lang-btn.active {
+  background: #fff;
+  color: var(--fg-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Site Intro
+   ======================================== */
+
+.site-intro {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 0 1.5rem;
+}
+
+.site-intro-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+  line-height: 1.2;
+}
+
+.site-intro-title {
+  font-size: 1.05rem;
+  color: #888;
+  margin-bottom: 1.2rem;
+}
+
+.site-intro-text {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--fg-color);
+  margin-bottom: 1rem;
+}
+
+.site-intro-contacts {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--fg-color);
+  background: #f5f5f5;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+}
+
+.contact-btn:hover {
+  background: #eee;
+  border-color: #ddd;
+}
+
+.contact-btn:active {
+  background: #e5e5e5;
+}
+
+/* ========================================
+   Section Titles (before each database)
+   ======================================== */
+
+/* Shared section title style */
+.notion-block-11e0fa8878394b8eb15f0ffeef61ab1c::before,
+.notion-block-98b140efc0554f328ccc6237250a791d::before,
+.notion-block-37e2c53e1215443b83cd7a443a130d2a::before,
+.notion-block-e90164d45cb74a44b0277cc13155be57::before {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--fg-color);
+  margin-bottom: 0.75rem;
+  margin-top: 2rem;
+}
+
+.notion-block-11e0fa8878394b8eb15f0ffeef61ab1c::before {
+  content: var(--section-title-1, "");
+}
+
+.notion-block-98b140efc0554f328ccc6237250a791d::before {
+  content: var(--section-title-2, "");
+}
+
+.notion-block-37e2c53e1215443b83cd7a443a130d2a::before {
+  content: var(--section-title-3, "");
+}
+
+.notion-block-e90164d45cb74a44b0277cc13155be57::before {
+  content: var(--section-title-4, "");
+}
+
+/* ========================================
+   Page Footer (inside Notion content)
+   ======================================== */
+
+.page-footer-content {
+  text-align: center;
+  padding: 3rem 0 1rem;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 3rem;
+}
+
+.page-footer-content p {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 0.25rem;
+}
+
+.page-footer-content .footer-version {
+  font-size: 0.75rem;
+  color: #ccc;
+}
+
+/* ========================================
+   Site Footer (legacy, kept for fallback)
+   ======================================== */
+
+.footer-disclaimer {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 0.25rem;
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 0.25rem;
+}
+
+.footer-version {
+  font-size: 0.75rem;
+  color: #ccc;
 }

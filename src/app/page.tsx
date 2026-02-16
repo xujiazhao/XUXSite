@@ -12,6 +12,7 @@ export default async function HomePage() {
     <NotionPageRenderer
       recordMap={recordMap}
       rootPageId={config.rootNotionPageId}
+      isHomePage={true}
     />
   )
 }

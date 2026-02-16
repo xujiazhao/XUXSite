@@ -19,11 +19,13 @@ const NotionPage = dynamic(
 interface NotionPageRendererProps {
   recordMap: ExtendedRecordMap
   rootPageId?: string
+  isHomePage?: boolean
 }
 
 export default function NotionPageRenderer({
   recordMap,
   rootPageId,
+  isHomePage,
 }: NotionPageRendererProps) {
-  return <NotionPage recordMap={recordMap} rootPageId={rootPageId} />
+  return <NotionPage recordMap={recordMap} rootPageId={rootPageId} isHomePage={isHomePage} />
 }

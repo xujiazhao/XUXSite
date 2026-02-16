@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { config } from '@/lib/notion'
+import { LanguageProvider } from '@/components/LanguageContext'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -36,24 +37,9 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className="antialiased">
-        <main className="min-h-screen">{children}</main>
-
-        <footer className="site-footer">
-          <p>
-            © {new Date().getFullYear()} {config.name}. All rights reserved.
-          </p>
-          <p className="mt-1">
-            <a href={`mailto:${config.social.email}`}>{config.social.email}</a>
-            {' · '}
-            <a
-              href={config.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </p>
-        </footer>
+        <LanguageProvider>
+          <main className="min-h-screen">{children}</main>
+        </LanguageProvider>
       </body>
     </html>
   )
